@@ -1,0 +1,6 @@
+name: RepakDiscordBOT
+version: '${version}'
+main: net.repakmc.jogar.repakdiscordbot.RepakDiscordBOT
+authors: [ mattnicee7 ]
+description: A discord bot with simple commands for RepakMC
+website: github.com/RepakMC
