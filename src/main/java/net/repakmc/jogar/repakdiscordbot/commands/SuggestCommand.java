@@ -29,6 +29,9 @@ public class SuggestCommand extends ListenerAdapter {
 
         val args = event.getMessage().getContentRaw().split(" ");
 
+        if (args.length < 2)
+            return;
+
         if (args[0].equalsIgnoreCase(".sugerir") && args[1] != null) {
             if (args[1].replace(" ", "").isEmpty())
                 return;

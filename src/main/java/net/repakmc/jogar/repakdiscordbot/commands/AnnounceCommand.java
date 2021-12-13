@@ -26,6 +26,9 @@ public class AnnounceCommand extends ListenerAdapter {
 
         val args = event.getMessage().getContentRaw().split(" ");
 
+        if (args.length < 2)
+            return;
+
         if (args[0].equalsIgnoreCase("repak.anunciar") && !(args[1].isEmpty())) {
             val channel = event.getChannel();
             val message = event.getMessage();
