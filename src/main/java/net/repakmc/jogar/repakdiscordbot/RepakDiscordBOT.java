@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.repakmc.jogar.repakdiscordbot.commands.AnnounceCommand;
 import net.repakmc.jogar.repakdiscordbot.commands.ChangelogCommand;
 import net.repakmc.jogar.repakdiscordbot.commands.SuggestCommand;
+import net.repakmc.jogar.repakdiscordbot.listener.UserJoinListener;
 import net.repakmc.jogar.repakdiscordbot.manager.CooldownManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,6 +26,7 @@ public final class RepakDiscordBOT extends JavaPlugin {
     @Getter private JDA discordAPI;
     @Getter private CooldownManager cooldownManager;
 
+    @Getter private String welcomeChannelId;
     @Getter private String changelogChannelId;
     @Getter private String announceChannelId;
     @Getter private String commandsChannelId;
@@ -54,6 +56,7 @@ public final class RepakDiscordBOT extends JavaPlugin {
         suggestionId = getConfig().getInt("suggestionId");
         discordLogChannelId = getConfig().getString("discordLogChannelId");
         changelogId = getConfig().getInt("changeLogId");
+        welcomeChannelId = getConfig().getString("welcomeChannelId");
     }
 
     @SneakyThrows
@@ -66,6 +69,7 @@ public final class RepakDiscordBOT extends JavaPlugin {
                 .addEventListeners(new AnnounceCommand(this))
                 .addEventListeners(new SuggestCommand(this))
                 .addEventListeners(new ChangelogCommand(this))
+                .addEventListeners(new UserJoinListener(this))
                 .build();
     }
 
