@@ -29,8 +29,10 @@ public final class RepakDiscordBOT extends JavaPlugin {
     @Getter private String announceChannelId;
     @Getter private String commandsChannelId;
     @Getter private String suggestionsChannelId;
+    @Getter private String discordLogChannelId;
 
     @Getter private int suggestionId;
+    @Getter private int changelogId;
 
     @Override
     public void onEnable() {
@@ -50,6 +52,8 @@ public final class RepakDiscordBOT extends JavaPlugin {
         commandsChannelId = getConfig().getString("commandsChannelId");
         suggestionsChannelId = getConfig().getString("suggestionsChannelId");
         suggestionId = getConfig().getInt("suggestionId");
+        discordLogChannelId = getConfig().getString("discordLogChannelId");
+        changelogId = getConfig().getInt("changeLogId");
     }
 
     @SneakyThrows
@@ -70,4 +74,11 @@ public final class RepakDiscordBOT extends JavaPlugin {
         saveConfig();
         suggestionId = getConfig().getInt("suggestionId");
     }
+
+    public void countChangelog() {
+        getConfig().get("changelogId", getSuggestionId() + 1);
+        saveConfig();
+        changelogId = getConfig().getInt("changelogId");
+    }
+
 }
