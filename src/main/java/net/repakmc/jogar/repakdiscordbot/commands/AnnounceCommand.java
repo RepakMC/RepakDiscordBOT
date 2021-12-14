@@ -39,10 +39,12 @@ public class AnnounceCommand extends ListenerAdapter {
                     .setColor(Color.YELLOW)
                     .setTitle("<:repak512:759188335603351553> Anúncio - RepakMC")
                     .setDescription(announce)
-                    .setFooter("    Anuncio por " + event.getAuthor().getName() + " | " + TimeUtils.getTimeStamp())
+                    .setFooter("    Anúncio por " + event.getAuthor().getName() + " | " + TimeUtils.getTimeStamp())
                     .build();
 
-            channel.sendMessageEmbeds(embedMessage).queue();
+            channel.sendMessageEmbeds(embedMessage).queue(it -> {
+                it.addReaction("U+1F451").queueAfter(1, TimeUnit.SECONDS);
+            });
 
             message.delete().queue();
             channel.sendMessage("@everyone").flatMap(Message::delete).queueAfter(2, TimeUnit.SECONDS);
